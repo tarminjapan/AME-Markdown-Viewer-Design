@@ -1,0 +1,439 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* ---------- Light Mode ---------- */
+:root {
+  --bg-color: #f4f6f9;
+  --surface: #ffffff;
+  --surface-muted: #eef1f6;
+  --text-color: #1a1f2e;
+  --text-muted: #4a5068;
+  --heading-color: #0c1021;
+  --border: #c8cfd8;
+  --border-strong: #9aa3b2;
+
+  --accent: #0088a3;
+  --accent-hover: #006b82;
+  --accent-soft: rgba(0, 136, 163, 0.10);
+  --accent-glow: rgba(0, 200, 220, 0.35);
+
+  --link: #007585;
+  --link-visited: #5a3e8a;
+
+  --success: #0a7a6d;
+  --warning: #a34e00;
+  --danger: #a82020;
+
+  --code-bg: #eef2f7;
+  --code-inline-bg: #e3eaf3;
+  --code-text: #8a1c4a;
+
+  --quote-bg: #f0f4f8;
+  --table-stripe: #f5f8fb;
+
+  --selection-bg: rgba(0, 136, 163, 0.16);
+  --focus-ring: 0 0 0 2px rgba(0, 136, 163, 0.35);
+
+  --shadow-sm: 0 1px 2px rgba(12, 16, 33, 0.06);
+  --shadow-md: 0 4px 16px rgba(12, 16, 33, 0.08);
+}
+
+/* ---------- Dark Mode ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0a0e1a;
+    --surface: #0f1424;
+    --surface-muted: #151b2e;
+    --text-color: #d0d6e4;
+    --text-muted: #8a92a8;
+    --heading-color: #eef0f6;
+    --border: #252d42;
+    --border-strong: #3a4460;
+
+    --accent: #00d4e8;
+    --accent-hover: #33e0f0;
+    --accent-soft: rgba(0, 212, 232, 0.10);
+    --accent-glow: rgba(0, 212, 232, 0.30);
+
+    --link: #00bcd4;
+    --link-visited: #b39ddb;
+
+    --success: #4dd0b8;
+    --warning: #f0a840;
+    --danger: #ef6b6b;
+
+    --code-bg: #0c1120;
+    --code-inline-bg: #141a2e;
+    --code-text: #f08cb8;
+
+    --quote-bg: #0d1222;
+    --table-stripe: #0e1326;
+
+    --selection-bg: rgba(0, 212, 232, 0.18);
+    --focus-ring: 0 0 0 2px rgba(0, 212, 232, 0.30);
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.40);
+    --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* ---------- Base ---------- */
+body,
+.markdown-body {
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+  color: var(--text-color);
+  background: var(--bg-color);
+  padding: 2em 3em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+::selection {
+  background: var(--selection-bg);
+}
+
+body>*:first-child,
+.markdown-body>*:first-child {
+  margin-top: 0;
+}
+
+/* ---------- Headings ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.9em;
+  margin-bottom: 0.75em;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--heading-color);
+  letter-spacing: 0.02em;
+  scroll-margin-top: 1.2em;
+}
+
+h1 {
+  font-size: 2.2em;
+  padding-bottom: 0.55em;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 88px;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+h2 {
+  font-size: 1.7em;
+  padding: 0.2em 0 0.45em;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 1.35em;
+}
+
+h4 {
+  font-size: 1.15em;
+}
+
+h5,
+h6 {
+  font-size: 1em;
+}
+
+/* ---------- Paragraph / Text ---------- */
+p {
+  margin: 1em 0;
+}
+
+strong {
+  font-weight: 800;
+  color: var(--heading-color);
+}
+
+em {
+  color: var(--text-muted);
+}
+
+del {
+  color: var(--text-muted);
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--link);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition: color 0.15s ease;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ---------- Horizontal Rule ---------- */
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--border-strong);
+  margin: 2.5em 0;
+}
+
+/* ---------- Lists ---------- */
+ul,
+ol {
+  padding-left: 1.6em;
+  margin: 1em 0 1.2em;
+}
+
+li {
+  margin: 0.45em 0;
+  padding-left: 0.25em;
+}
+
+ul li::marker {
+  color: var(--accent);
+}
+
+ol li::marker {
+  color: var(--accent);
+  font-family: "Google Sans Code", monospace;
+  font-weight: 700;
+}
+
+/* ---------- Blockquote ---------- */
+blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  background: var(--quote-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+blockquote p {
+  margin: 0.2em 0;
+}
+
+blockquote> :first-child {
+  margin-top: 0;
+}
+
+blockquote> :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Code ---------- */
+pre,
+code,
+tt {
+  font-family: "Google Sans Code", monospace;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.1em 1.2em;
+  overflow: auto;
+  box-shadow: var(--shadow-sm);
+  border-left: 3px solid var(--accent);
+}
+
+pre code {
+  color: var(--text-color);
+  background: transparent;
+  padding: 0;
+  font-size: 0.95em;
+  line-height: 1.65;
+}
+
+p>code,
+li>code,
+td>code,
+blockquote>code {
+  background: var(--code-inline-bg);
+  color: var(--code-text);
+  padding: 0.18em 0.48em;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  font-size: 0.9em;
+  white-space: break-spaces;
+}
+
+/* ---------- Tables ---------- */
+table {
+  width: fit-content;
+  max-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.8em 0;
+  font-size: 0.95em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+th,
+td {
+  padding: 0.9em 1em;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th:last-child,
+td:last-child {
+  border-right: none;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+th {
+  background: var(--surface-muted);
+  color: var(--heading-color);
+  font-weight: 700;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  border-bottom: 2px solid var(--accent);
+}
+
+tbody tr:nth-child(even) {
+  background: var(--table-stripe);
+}
+
+tbody tr:hover {
+  background: var(--accent-soft);
+}
+
+/* ---------- Images ---------- */
+img {
+  display: block;
+  margin: 2em auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- Details / Summary ---------- */
+details {
+  margin: 1.2em 0;
+  padding: 0.2em 0;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--heading-color);
+  font-weight: 700;
+}
+
+summary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ---------- Keyboard Focus ---------- */
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ---------- Image size by alt text ---------- */
+img[alt~="w10"] {
+  width: 10%;
+}
+
+img[alt~="w20"] {
+  width: 20%;
+}
+
+img[alt~="w30"] {
+  width: 30%;
+}
+
+img[alt~="w40"] {
+  width: 40%;
+}
+
+img[alt~="w50"] {
+  width: 50%;
+}
+
+img[alt~="w60"] {
+  width: 60%;
+}
+
+img[alt~="w70"] {
+  width: 70%;
+}
+
+img[alt~="w80"] {
+  width: 80%;
+}
+
+img[alt~="w90"] {
+  width: 90%;
+}
+
+img[alt~="w100"] {
+  width: 100%;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+
+  body,
+  .markdown-body {
+    padding: 1.4em 1.1em;
+  }
+
+  h1 {
+    font-size: 1.9em;
+  }
+
+  h2 {
+    font-size: 1.45em;
+  }
+
+  h3 {
+    font-size: 1.22em;
+  }
+
+  table {
+    font-size: 0.92em;
+  }
+}
