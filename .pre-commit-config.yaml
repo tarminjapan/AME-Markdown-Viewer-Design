@@ -1,6 +1,12 @@
 repos:
   - repo: local
     hooks:
+      - id: check-package-lock
+        name: check package-lock.json exists
+        entry: bash -c 'test -f package-lock.json || { echo "Error: package-lock.json not found. Run npm install to generate it."; exit 1; }'
+        language: system
+        files: ^package\.json$
+        pass_filenames: false
       - id: markdownlint
         name: markdownlint
         entry: npx markdownlint "**/*.md" ".cursorrules" ".windsurfrules" ".github/copilot-instructions.md"
