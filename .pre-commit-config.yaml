@@ -1,0 +1,37 @@
+repos:
+  - repo: local
+    hooks:
+      - id: markdownlint
+        name: markdownlint
+        entry: npx markdownlint "**/*.md" ".cursorrules" ".windsurfrules" ".github/copilot-instructions.md"
+        language: system
+        types_or: [markdown, file]
+        pass_filenames: false
+
+      - id: stylelint
+        name: stylelint
+        entry: npx stylelint "**/*.css"
+        language: system
+        types: [css]
+        pass_filenames: false
+
+      - id: prettier
+        name: prettier (check)
+        entry: npx prettier --check "**/*.md" "**/*.css" ".cursorrules" ".windsurfrules"
+        language: system
+        types_or: [markdown, css, file]
+        pass_filenames: false
+
+      - id: check-disable-comments
+        name: check lint-disable comments
+        entry: node scripts/check-disable-comments.js
+        language: system
+        types_or: [markdown, css, file]
+        pass_filenames: false
+
+      - id: check-lint-config
+        name: check lint config for disabled rules
+        entry: node scripts/check-lint-config.js
+        language: system
+        types_or: [markdown, css, file]
+        pass_filenames: false
