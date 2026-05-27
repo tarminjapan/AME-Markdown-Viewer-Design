@@ -1,0 +1,13 @@
+{
+  "printWidth": 80,
+  "overrides": [
+    {
+      "files": [".cursorrules", ".windsurfrules"],
+      "options": { "parser": "markdown" }
+    },
+    {
+      "files": ["*.md", ".cursorrules", ".windsurfrules"],
+      "options": { "proseWrap": "preserve" }
+    }
+  ]
+}

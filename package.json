@@ -1,0 +1,20 @@
+{
+  "name": "ame-markdown-viewer-design",
+  "private": true,
+  "description": "Markdown Viewer design themes based on 伝わりやすいデザイン",
+  "devDependencies": {
+    "markdownlint-cli": "^0.44.0",
+    "prettier": "^3.5.0",
+    "stylelint": "^16.19.0",
+    "stylelint-config-standard": "^38.0.0"
+  },
+  "scripts": {
+    "lint:md": "markdownlint '**/*.md' '.cursorrules' '.windsurfrules' '.github/copilot-instructions.md'",
+    "lint:css": "stylelint '**/*.css'",
+    "format:check": "prettier --check '**/*.md' '**/*.css' '.cursorrules' '.windsurfrules'",
+    "format:fix": "prettier --write '**/*.md' '**/*.css' '.cursorrules' '.windsurfrules'",
+    "check:disable-comments": "node scripts/check-disable-comments.js",
+    "check:lint-config": "node scripts/check-lint-config.js",
+    "test": "npm run lint:md && npm run lint:css && npm run format:check && npm run check:disable-comments && npm run check:lint-config"
+  }
+}
