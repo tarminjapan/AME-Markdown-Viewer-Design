@@ -1,20 +1,113 @@
 // ==UserScript==
 // @name         AME Markdown Viewer — Copy Code Button
 // @namespace    https://github.com/tarminjapan/AME-Markdown-Viewer-Design
-// @version      1.0.0
-// @description  Add a copy button to every code block in Markdown Viewer.
+// @version      2.0.0
+// @description  Add a copy button to every code block + load Google Web Fonts (bypass CSP).
 // @author       tarminjapan
-// @match        *://*/*
-// @resource     COPY_BUTTON_CSS https://raw.githubusercontent.com/tarminjapan/AME-Markdown-Viewer-Design/main/themes/Cyber-Flat/copy-button.css
+// @match        *://*/*.md*
+// @match        file:///*.md*
+// @grant        GM_xmlhttpRequest
 // @grant        GM_addStyle
-// @grant        GM_getResourceText
+// @connect      fonts.googleapis.com
+// @connect      fonts.gstatic.com
 // @run-at       document-idle
 // ==/UserScript==
 
 (function () {
   "use strict";
 
-  GM_addStyle(GM_getResourceText("COPY_BUTTON_CSS"));
+  if (!location.pathname.toLowerCase().endsWith(".md")) return;
+
+  var FONT_SOURCES = [
+    "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap",
+    "https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap",
+    "https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap",
+  ];
+
+  function gmFetchText(url) {
+    return new Promise(function (resolve, reject) {
+      GM_xmlhttpRequest({
+        method: "GET",
+        url: url,
+        headers: { "User-Agent": navigator.userAgent },
+        responseType: "text",
+        onload: function (res) {
+          if (res.status >= 200 && res.status < 300) {
+            resolve(res.responseText);
+          } else {
+            reject(new Error("HTTP " + res.status));
+          }
+        },
+        onerror: reject,
+        ontimeout: reject,
+      });
+    });
+  }
+
+  function gmFetchDataURL(url) {
+    return new Promise(function (resolve, reject) {
+      GM_xmlhttpRequest({
+        method: "GET",
+        url: url,
+        responseType: "blob",
+        onload: function (res) {
+          if (res.status >= 200 && res.status < 300) {
+            var reader = new FileReader();
+            reader.onloadend = function () {
+              resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(res.response);
+          } else {
+            reject(new Error("HTTP " + res.status));
+          }
+        },
+        onerror: reject,
+        ontimeout: reject,
+      });
+    });
+  }
+
+  function inlineFontURLs(css) {
+    var urlRegex = /url\(["']?(https?:\/\/[^)"'\s]+)["']?\)/g;
+    var urls = [];
+    var m;
+    while ((m = urlRegex.exec(css)) !== null) {
+      if (urls.indexOf(m[1]) === -1) urls.push(m[1]);
+    }
+    if (!urls.length) return Promise.resolve(css);
+
+    return Promise.all(
+      urls.map(function (u) {
+        return gmFetchDataURL(u).then(function (dataUrl) {
+          return { from: u, to: dataUrl };
+        });
+      })
+    ).then(function (replacements) {
+      var result = css;
+      replacements.forEach(function (r) {
+        result = result.split(r.from).join(r.to);
+      });
+      return result;
+    });
+  }
+
+  function loadFonts() {
+    Promise.all(
+      FONT_SOURCES.map(function (url) {
+        return gmFetchText(url)
+          .then(inlineFontURLs)
+          .catch(function () {
+            return "";
+          });
+      })
+    ).then(function (cssParts) {
+      var css = cssParts.join("\n");
+      if (css) GM_addStyle(css);
+    });
+  }
+
+  loadFonts();
 
   var CONTAINER_SELECTOR =
     ".markdown-preview, .markdown-body, article, main, body";
