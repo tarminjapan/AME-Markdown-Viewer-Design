@@ -82,7 +82,7 @@
         return gmFetchDataURL(u).then(function (dataUrl) {
           return { from: u, to: dataUrl };
         });
-      })
+      }),
     ).then(function (replacements) {
       var result = css;
       replacements.forEach(function (r) {
@@ -100,7 +100,7 @@
           .catch(function () {
             return "";
           });
-      })
+      }),
     ).then(function (cssParts) {
       var css = cssParts.join("\n");
       if (css) GM_addStyle(css);
