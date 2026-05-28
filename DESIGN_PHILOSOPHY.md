@@ -152,8 +152,8 @@ Webフォント（Google Fonts）を優先し、
 本リポジトリでは、**あらゆるリント無視を禁止** する。
 
 - インラインの `stylelint-disable`、`markdownlint-disable`、
-  `prettier-ignore` 等のコメントは使用しない
-- lint 設定ファイル（`.stylelintrc.json` 等）でルールを無効化
+  `eslint-disable`、`prettier-ignore` 等のコメントは使用しない
+- lint 設定ファイル（`.stylelintrc.json`、`eslint.config.js` 等）でルールを無効化
   （`null` 等）しない
 - lint ルールに違反した場合は、**対象コードを修正** すること
 
@@ -168,6 +168,19 @@ Webフォント（Google Fonts）を優先し、
 ```
 
 上記のようなルールの無効化は許可されない。
+
+### 禁止されるコメント例
+
+```css
+/* stylelint-disable-next-line */ /* 禁止 */
+/* prettier-ignore */ /* 禁止 */
+```
+
+```javascript
+// eslint-disable-next-line no-unused-vars  // 禁止
+/* eslint-disable */ // 禁止
+// prettier-ignore                           // 禁止
+```
 
 ---
 

@@ -24,6 +24,9 @@ jobs:
       - name: stylelint
         run: npm run lint:css
 
+      - name: eslint
+        run: npm run lint:js
+
       - name: prettier (check)
         run: npm run format:check
 

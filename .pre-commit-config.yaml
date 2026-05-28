@@ -21,23 +21,30 @@ repos:
         types: [css]
         pass_filenames: false
 
+      - id: eslint
+        name: eslint
+        entry: npx eslint .
+        language: system
+        types: [javascript]
+        pass_filenames: false
+
       - id: prettier
         name: prettier (check)
-        entry: npx prettier --check "**/*.md" "**/*.css" ".cursorrules" ".windsurfrules"
+        entry: npx prettier --check "**/*.md" "**/*.css" "**/*.js" ".cursorrules" ".windsurfrules"
         language: system
-        types_or: [markdown, css, file]
+        types_or: [markdown, css, javascript, file]
         pass_filenames: false
 
       - id: check-disable-comments
         name: check lint-disable comments
         entry: node scripts/check-disable-comments.js
         language: system
-        types_or: [markdown, css, file]
+        types_or: [markdown, css, javascript, file]
         pass_filenames: false
 
       - id: check-lint-config
         name: check lint config for disabled rules
         entry: node scripts/check-lint-config.js
         language: system
-        types_or: [markdown, css, file]
+        types_or: [markdown, css, javascript, file]
         pass_filenames: false
