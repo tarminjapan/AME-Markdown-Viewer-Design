@@ -327,6 +327,7 @@ blockquote > code {
   min-height: 32px;
   padding: 6px 10px;
   color: var(--text-color, #1a1f2e);
+  background: var(--surface, #fff);
   background: color-mix(in srgb, var(--surface, #fff) 88%, transparent);
   border: 1px solid var(--border, #c8cfd8);
   border-radius: 0;

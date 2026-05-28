@@ -79,9 +79,13 @@
 
     return Promise.all(
       urls.map(function (u) {
-        return gmFetchDataURL(u).then(function (dataUrl) {
-          return { from: u, to: dataUrl };
-        });
+        return gmFetchDataURL(u)
+          .then(function (dataUrl) {
+            return { from: u, to: dataUrl };
+          })
+          .catch(function () {
+            return { from: u, to: u };
+          });
       }),
     ).then(function (replacements) {
       var result = css;
