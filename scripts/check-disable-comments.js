@@ -10,12 +10,19 @@ const PATTERNS = [
   { regex: /\/\*\s*stylelint-enable\b/, tool: "stylelint", scope: "css" },
   { regex: /stylelint-disable-line\b/, tool: "stylelint", scope: "css" },
   { regex: /stylelint-disable-next-line\b/, tool: "stylelint", scope: "css" },
+  { regex: /\/\*\s*eslint-disable\b/, tool: "eslint", scope: "js" },
+  { regex: /\/\*\s*eslint-enable\b/, tool: "eslint", scope: "js" },
+  { regex: /\/\/\s*eslint-disable-line\b/, tool: "eslint", scope: "js" },
+  { regex: /\/\/\s*eslint-disable-next-line\b/, tool: "eslint", scope: "js" },
   { regex: /<!--\s*prettier-ignore\s*-->/, tool: "prettier", scope: "md" },
   { regex: /\/\*\s*prettier-ignore\s*\*\//, tool: "prettier", scope: "css" },
+  { regex: /\/\*\s*prettier-ignore\s*\*\//, tool: "prettier", scope: "js" },
+  { regex: /\/\/\s*prettier-ignore\b/, tool: "prettier", scope: "js" },
 ];
 
 const MD_EXTS = [".md", ".markdown"];
 const CSS_EXTS = [".css"];
+const JS_EXTS = [".js"];
 const DOTFILES_MD = [".cursorrules", ".windsurfrules"];
 
 function walkDir(dir) {
@@ -43,10 +50,16 @@ function isCssFile(filePath) {
   return CSS_EXTS.includes(path.extname(filePath).toLowerCase());
 }
 
+function isJsFile(filePath) {
+  return JS_EXTS.includes(path.extname(filePath).toLowerCase());
+}
+
 function matchesScope(pattern, filePath) {
-  if (pattern.scope === "all") return isMdFile(filePath) || isCssFile(filePath);
+  if (pattern.scope === "all")
+    return isMdFile(filePath) || isCssFile(filePath) || isJsFile(filePath);
   if (pattern.scope === "md") return isMdFile(filePath);
   if (pattern.scope === "css") return isCssFile(filePath);
+  if (pattern.scope === "js") return isJsFile(filePath);
   return false;
 }
 
@@ -55,7 +68,7 @@ const allFiles = walkDir(rootDir);
 let violations = [];
 
 for (const file of allFiles) {
-  if (!isMdFile(file) && !isCssFile(file)) continue;
+  if (!isMdFile(file) && !isCssFile(file) && !isJsFile(file)) continue;
 
   const content = fs.readFileSync(file, "utf-8");
   const lines = content.split("\n");
@@ -83,7 +96,7 @@ if (violations.length > 0) {
   }
   console.error(
     `\n${violations.length} violation(s) found. ` +
-      "Remove all lint-disable / prettier-ignore comments."
+      "Remove all lint-disable / prettier-ignore comments.",
   );
   process.exit(1);
 } else {

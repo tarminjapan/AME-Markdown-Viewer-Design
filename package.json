@@ -3,6 +3,9 @@
   "private": true,
   "description": "Markdown Viewer design themes based on 伝わりやすいデザイン",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.0",
+    "globals": "^17.6.0",
     "markdownlint-cli": "^0.44.0",
     "prettier": "^3.5.0",
     "stylelint": "^16.19.0",
@@ -11,10 +14,12 @@
   "scripts": {
     "lint:md": "markdownlint '**/*.md' '.cursorrules' '.windsurfrules' '.github/copilot-instructions.md'",
     "lint:css": "stylelint '**/*.css'",
-    "format:check": "prettier --check '**/*.md' '**/*.css' '.cursorrules' '.windsurfrules'",
-    "format:fix": "prettier --write '**/*.md' '**/*.css' '.cursorrules' '.windsurfrules'",
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
+    "format:check": "prettier --check '**/*.md' '**/*.css' '**/*.js' '.cursorrules' '.windsurfrules'",
+    "format:fix": "prettier --write '**/*.md' '**/*.css' '**/*.js' '.cursorrules' '.windsurfrules'",
     "check:disable-comments": "node scripts/check-disable-comments.js",
     "check:lint-config": "node scripts/check-lint-config.js",
-    "test": "npm run lint:md && npm run lint:css && npm run format:check && npm run check:disable-comments && npm run check:lint-config"
+    "test": "npm run lint:md && npm run lint:css && npm run lint:js && npm run format:check && npm run check:disable-comments && npm run check:lint-config"
   }
 }

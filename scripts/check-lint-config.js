@@ -121,9 +121,49 @@ function checkPrettierrc() {
   }
 }
 
+function checkEslintConfig() {
+  const candidates = [
+    "eslint.config.js",
+    "eslint.config.mjs",
+    "eslint.config.cjs",
+  ];
+
+  for (const name of candidates) {
+    const filePath = path.join(rootDir, name);
+    if (!fs.existsSync(filePath)) continue;
+
+    try {
+      const exported = require(filePath);
+      const configs = Array.isArray(exported)
+        ? exported
+        : exported.default || [exported];
+      for (let i = 0; i < configs.length; i++) {
+        const config = configs[i];
+        if (typeof config === "object" && config !== null) {
+          const nulls = findNullValues(config, `${name}[${i}]`);
+          if (nulls.length > 0) {
+            violations.push({
+              file: name,
+              detail: `null values found at: ${nulls.join(", ")}`,
+            });
+          }
+        }
+      }
+    } catch {
+      violations.push({
+        file: name,
+        detail: "unable to load config for null check",
+      });
+    }
+
+    break;
+  }
+}
+
 checkStylelintrc();
 checkMarkdownlintConfig();
 checkPrettierrc();
+checkEslintConfig();
 
 if (violations.length > 0) {
   console.error("ERROR: lint config with disabled rules is prohibited.\n");
@@ -132,7 +172,7 @@ if (violations.length > 0) {
   }
   console.error(
     `\n${violations.length} violation(s) found. ` +
-      "Remove all disabled/null rules from config files."
+      "Remove all disabled/null rules from config files.",
   );
   process.exit(1);
 } else {
