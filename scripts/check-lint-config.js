@@ -122,11 +122,7 @@ function checkPrettierrc() {
 }
 
 function checkEslintConfig() {
-  const candidates = [
-    "eslint.config.js",
-    "eslint.config.mjs",
-    "eslint.config.cjs",
-  ];
+  const candidates = ["eslint.config.js", "eslint.config.cjs"];
 
   for (const name of candidates) {
     const filePath = path.join(rootDir, name);

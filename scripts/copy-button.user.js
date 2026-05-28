@@ -98,7 +98,7 @@
 
     button.addEventListener("click", function () {
       var code = preBlock.querySelector("code");
-      var text = code ? code.innerText : preBlock.innerText;
+      var text = code ? code.textContent : preBlock.textContent;
 
       if (!text || !text.trim()) {
         return;
