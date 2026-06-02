@@ -238,13 +238,13 @@ blockquote > :last-child {
 /* ---------- Code ---------- */
 pre,
 tt,
-:root pre[class*="language-"] {
-  font-family: var(--font-mono);
+pre[class*="language-"] {
+  font-family: var(--font-mono) !important;
 }
 
 code,
-:root code[class*="language-"] {
-  font-family: var(--font-mono);
+code[class*="language-"] {
+  font-family: var(--font-mono) !important;
 }
 
 pre {
