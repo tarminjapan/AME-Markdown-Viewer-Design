@@ -252,6 +252,7 @@ pre {
 }
 
 pre code {
+  font-family: "Noto Sans Mono", "BIZ UDGothic", monospace;
   color: var(--text-color);
   background: transparent;
   padding: 0;
@@ -263,6 +264,7 @@ p > code,
 li > code,
 td > code,
 blockquote > code {
+  font-family: "Noto Sans Mono", "BIZ UDGothic", monospace;
   background: var(--code-inline-bg);
   color: var(--code-text);
   padding: 0.18em 0.48em;
