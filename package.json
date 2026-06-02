@@ -6,6 +6,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.4.0",
     "globals": "^17.6.0",
+    "husky": "^9.1.7",
     "markdownlint-cli": "^0.44.0",
     "prettier": "^3.5.0",
     "stylelint": "^16.19.0",
@@ -20,6 +21,7 @@
     "format:fix": "prettier --write '**/*.md' '**/*.css' '**/*.js' '.cursorrules' '.windsurfrules'",
     "check:disable-comments": "node scripts/check-disable-comments.js",
     "check:lint-config": "node scripts/check-lint-config.js",
-    "test": "npm run lint:md && npm run lint:css && npm run lint:js && npm run format:check && npm run check:disable-comments && npm run check:lint-config"
+    "test": "npm run lint:md && npm run lint:css && npm run lint:js && npm run format:check && npm run check:disable-comments && npm run check:lint-config",
+    "prepare": "husky"
   }
 }
