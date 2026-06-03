@@ -321,8 +321,9 @@ kbd {
 }
 
 /* テキストの整列を乱さない、極薄かつ端麗なインラインコード */
-code {
-  font-family: var(--font-mono);
+code,
+code[class*="language-"] {
+  font-family: var(--font-mono) !important;
   font-size: 0.86em;
   color: var(--accent-primary);
   background-color: var(--bg-secondary);
@@ -456,7 +457,9 @@ input[type="checkbox"] {
 /* --------------------------------------------------------------------------
 6. MONOCHROME WINDOW PRE CODE BLOCKS (SILENT CODE SPHERE)
 -------------------------------------------------------------------------- */
-pre {
+pre,
+pre[class*="language-"] {
+  font-family: var(--font-mono) !important;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-light);
   border-radius: var(--border-radius-md);
