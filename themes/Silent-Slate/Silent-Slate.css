@@ -1,0 +1,821 @@
+/* ==========================================================================
+THEME NAME: Silent Slate (サイレント・スレート)
+VERSION:    1.1.0
+AUTHOR:     Elite Typography & Design Lab
+PURPOSE:    The Ultimate World-Class Minimalist Markdown Theme
+STANDARDS:  Aligned with tarminjapan/ame-markdown-viewer-design
+PHILOSOPHY: Zero Cognitive Noise, Absolute Contrast, Distilled Silence
+========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap");
+
+/* --------------------------------------------------------------------------
+DESIGN SYSTEM CONSTANTS (THE SLATE PALETTE)
+-------------------------------------------------------------------------- */
+:root {
+    /* --- Light Theme: Distilled Morning Slate --- */
+    --bg-primary: #f8fafc;
+
+    /* 澄み切った朝の空気を含む極薄のスレートホワイト */
+    --bg-secondary: #f1f5f9;
+
+    /* 雑味のない、視覚を休めるためのライトスレート */
+    --bg-tertiary: #e2e8f0;
+    --bg-glass: rgb(248 250 252 / 85%);
+    --text-primary: #0f172a;
+
+    /* 知性と深い沈黙を湛えたインクブラック */
+    --text-secondary: #334155;
+
+    /* 読書時の眼精疲労を最小化する極上スレートチャコール */
+    --text-tertiary: #64748b;
+
+    /* 補助情報のためのエレガントなスチールグレー */
+    --text-muted: #94a3b8;
+    --accent-primary: #468bf7;
+
+    /* 静謐さと明晰さを両立する Slate Sapphire */
+    --accent-hover: #2563eb;
+    --accent-glow: rgb(70 139 247 / 8%);
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    --border-focus: #468bf7;
+
+    /* --- High-Contrast Admonition Colors (Zero Visual Noise) --- */
+    --color-note: #0284c7;
+    --bg-note: #f0f9ff;
+    --border-note: #bae6fd;
+    --color-tip: #059669;
+    --bg-tip: #f0fdf4;
+    --border-tip: #bbf7d0;
+    --color-info: #4f46e5;
+    --bg-info: #f5f3ff;
+    --border-info: #ddd6fe;
+    --color-warning: #d97706;
+    --bg-warning: #fffbeb;
+    --border-warning: #fde68a;
+    --color-danger: #dc2626;
+    --bg-danger: #fef2f2;
+    --border-danger: #fecaca;
+
+    /* --- Perfect Typographic Scale --- */
+    --font-sans: "Noto Sans", "Noto Sans JP", sans-serif;
+    --font-serif: "Noto Serif", "Noto Serif JP", serif;
+    --font-mono: "Noto Sans Mono", "BIZ UDGothic", monospace;
+    --spacing-unit: 8px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 3%);
+    --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 3%),
+        0 2px 6px -1px rgb(15 23 42 / 2%);
+    --shadow-lg: 0 12px 24px -4px rgb(15 23 42 / 4%),
+        0 4px 12px -2px rgb(15 23 42 / 2%);
+    --shadow-glow: 0 0 15px 0 rgb(59 130 246 / 5%);
+    --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-snappy: all 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Dark Theme: Deep Obsidian Slate --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #090d16;
+
+        /* 深海や宇宙の静寂を思わせる、極めて洗練されたディープネイビーブラック */
+        --bg-secondary: #111827;
+
+        /* 階層を美しく分節化するセカンダリースレート */
+        --bg-tertiary: #1f2937;
+        --bg-glass: rgb(9 13 22 / 85%);
+        --text-primary: #f1f5f9;
+
+        /* 発光を適度に抑え、長時間の凝視に耐えうるクリアホワイト */
+        --text-secondary: #cbd5e1;
+
+        /* 高いコントラストを維持しつつ刺激を抑えたソフトスレート */
+        --text-tertiary: #94a3b8;
+
+        /* 暗所での可読性を担保したミディアムグレー */
+        --text-muted: #64748b;
+        --accent-primary: #2a68ec;
+
+        /* 暗黒の中で知的かつ静かに輝くスレートブルー */
+        --accent-hover: #4b8af5;
+        --accent-glow: rgb(42 104 236 / 12%);
+        --border-light: #1f2937;
+        --border-medium: #374151;
+        --border-focus: #2a68ec;
+
+        /* --- Dark Admonition Colors --- */
+        --color-note: #38bdf8;
+        --bg-note: rgb(56 189 248 / 3%);
+        --border-note: rgb(56 189 248 / 12%);
+        --color-tip: #34d399;
+        --bg-tip: rgb(52 211 153 / 3%);
+        --border-tip: rgb(52 211 153 / 12%);
+        --color-info: #818cf8;
+        --bg-info: rgb(129 140 248 / 3%);
+        --border-info: rgb(129 140 248 / 12%);
+        --color-warning: #fbbf24;
+        --bg-warning: rgb(251 191 36 / 3%);
+        --border-warning: rgb(251 191 36 / 12%);
+        --color-danger: #f87171;
+        --bg-danger: rgb(248 113 113 / 3%);
+        --border-danger: rgb(248 113 113 / 12%);
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 50%);
+        --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 40%),
+            0 2px 6px -1px rgb(0 0 0 / 30%);
+        --shadow-lg: 0 16px 32px -4px rgb(0 0 0 / 60%),
+            0 4px 12px -2px rgb(0 0 0 / 40%);
+        --shadow-glow: 0 0 20px 0 rgb(42 104 236 / 6%);
+    }
+}
+
+/* --------------------------------------------------------------------------
+2. GLOBAL LAYOUT (THE ART OF ABSOLUTE WHITESPACE)
+-------------------------------------------------------------------------- */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.85;
+
+    /* 視線が一切引っかかることなく水平に流れるための黄金比率 */
+    letter-spacing: 0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    overflow-wrap: anywhere;
+}
+
+/* 最適な1行あたりの可読文字数を担保する最大幅 (760px) */
+#write,
+.markdown-body {
+    max-width: 760px;
+    width: 100%;
+    padding: 5rem 2.5rem 8rem;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+::selection {
+    background-color: var(--accent-glow);
+    color: var(--accent-primary);
+}
+
+/* --------------------------------------------------------------------------
+3. TYPOGRAPHY (PURE CONTRAST HIERARCHY)
+-------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-primary);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.018em;
+    margin-top: 2.4em;
+    margin-bottom: 0.8em;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--border-light);
+    margin-top: 1.2em;
+}
+
+/* 視覚的ノイズを極限まで抑えた、インディゴ・スレートの極細アンダーバー */
+h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 32px;
+    height: 1.5px;
+    background-color: var(--accent-primary);
+}
+
+h2 {
+    font-size: 1.65rem;
+    font-weight: 750;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.3em;
+}
+
+/* ホバー時に知的かつ極めて優しくフェードインする垂直インジケーター */
+h2::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 25%;
+    height: 50%;
+    width: 2px;
+    background-color: var(--accent-primary);
+    border-radius: var(--border-radius-sm);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+h2:hover::before {
+    opacity: 1;
+    left: -10px;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 1.1rem;
+}
+
+h5 {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+h6 {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+p:first-child {
+    margin-top: 0 !important;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    text-align: justify;
+}
+
+/* --------------------------------------------------------------------------
+4. INLINE ELEMENTS (REFINED TYPOGRAPHIC INTEGRITY)
+-------------------------------------------------------------------------- */
+a {
+    color: var(--accent-primary);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+    font-weight: 500;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+    text-decoration-color: var(--accent-hover);
+}
+
+a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-glow), 0 0 0 4px var(--accent-primary);
+    border-radius: var(--border-radius-sm);
+}
+
+strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+em {
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+del {
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+/* 計算し尽くされた極薄のKBDキーデザイン */
+kbd {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-medium);
+    border-bottom: 2px solid var(--border-medium);
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 0 3px;
+    box-shadow: var(--shadow-sm);
+    display: inline-block;
+    line-height: 1;
+}
+
+/* テキストの整列を乱さない、極薄かつ端麗なインラインコード */
+code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    color: var(--accent-primary);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-sm);
+    padding: 1.5px 4.5px;
+    overflow-wrap: anywhere;
+}
+
+pre code {
+    color: inherit;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    font-size: 0.88em;
+}
+
+/* --------------------------------------------------------------------------
+5. BLOCK ELEMENTS (ELEGANT SEGMENTATION)
+-------------------------------------------------------------------------- */
+
+/* 知性の証となる静粛なブロッククオート（巨大なクオートマークのような子供っぽい装飾を廃止） */
+blockquote {
+    margin: 2.2em 0;
+    padding: 0.85em 1.6em;
+    background-color: var(--bg-secondary);
+    border-left: 3px solid var(--accent-primary);
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+}
+
+blockquote p {
+    margin-bottom: 0;
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+blockquote cite {
+    display: block;
+    font-size: 0.82em;
+    color: var(--text-tertiary);
+    margin-top: 8px;
+    font-style: normal;
+    text-align: right;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: var(--border-light);
+    margin: 4.5em 0;
+    position: relative;
+}
+
+hr::after {
+    content: "•";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg-primary);
+    color: var(--text-muted);
+    padding: 0 20px;
+    font-size: 0.85rem;
+}
+
+/* 精密にアライメントされた、美しく上品なリストシステム */
+ul,
+ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1.5em;
+}
+
+li {
+    margin-bottom: 0.45em;
+    line-height: 1.8;
+}
+
+li>ul,
+li>ol {
+    margin-top: 0.3em;
+    margin-bottom: 0;
+    border-left: 1px solid var(--border-light);
+    padding-left: 1.1rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    position: relative;
+}
+
+/* ドットの直径と配置を1/10px単位で制御 */
+ul li::before {
+    content: "";
+    position: absolute;
+    left: -1.1rem;
+    top: 0.72em;
+    width: 4px;
+    height: 4px;
+    background-color: var(--text-tertiary);
+    border-radius: 50%;
+}
+
+ul ul li::before {
+    background-color: transparent;
+    border: 1px solid var(--text-tertiary);
+}
+
+/* インタラクティブ・タスクリスト */
+input[type="checkbox"] {
+    accent-color: var(--accent-primary);
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 8px;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-snappy);
+}
+
+/* --------------------------------------------------------------------------
+6. MONOCHROME WINDOW PRE CODE BLOCKS (SILENT CODE SPHERE)
+-------------------------------------------------------------------------- */
+pre {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-md);
+    margin: 2.2em 0;
+    padding: 1.35em 1.6em;
+    overflow-x: auto;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+pre:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-medium);
+}
+
+/* 高級オーディオ機器のように、極めて美しく沈黙するモノクロドット・ウィンドウインジケーター */
+pre::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+    box-shadow: 10px 0 0 var(--text-muted), 20px 0 0 var(--text-muted);
+    opacity: 0.35;
+    z-index: 5;
+}
+
+pre {
+    padding-top: 2.6rem !important;
+}
+
+pre::-webkit-scrollbar {
+    height: 4px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 2px;
+}
+
+pre[lang]::after {
+    content: attr(lang);
+    position: absolute;
+    top: 11px;
+    right: 18px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+7. ACADEMIC THREE-LINE TABLES (THE ABSOLUTE STANDARD)
+-------------------------------------------------------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.5em 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+th,
+td {
+    padding: 11px 15px;
+    text-align: left;
+}
+
+th {
+    font-weight: 600;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    border-bottom: 1.5px solid var(--border-medium);
+}
+
+tr {
+    border-bottom: 1px solid var(--border-light);
+    background-color: transparent;
+    transition: var(--transition-snappy);
+}
+
+tr:nth-child(even) {
+    background-color: rgb(244 245 246 / 40%);
+}
+
+@media (prefers-color-scheme: dark) {
+    tr:nth-child(even) {
+        background-color: rgb(17 24 39 / 30%);
+    }
+}
+
+tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* --- Perfect Three-line Table (三線表) Support --- */
+.three-line-table table {
+    border-top: 1.5px solid var(--text-primary) !important;
+    border-bottom: 1.5px solid var(--text-primary) !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+.three-line-table th {
+    border-bottom: 1px solid var(--text-primary) !important;
+}
+
+.three-line-table tr {
+    border-bottom: none !important;
+    background: transparent !important;
+}
+
+.three-line-table td {
+    border: none !important;
+}
+
+/* --------------------------------------------------------------------------
+8. ADMONITION BLOCKS (SUBTLE SIGNAL)
+-------------------------------------------------------------------------- */
+.admonition,
+.callout {
+    margin: 2.2em 0;
+    padding: 1.15rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    border-left: 3px solid var(--border-focus);
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+.admonition-title,
+.callout-title {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    margin-bottom: 0.4em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admonition-title::before,
+.callout-title::before {
+    content: "◆";
+    color: var(--accent-primary);
+    font-size: 0.8rem;
+}
+
+/* --- Note --- */
+.admonition-note,
+.callout-note {
+    border-left-color: var(--color-note);
+    background-color: var(--bg-note);
+}
+
+.admonition-note .admonition-title,
+.callout-note .callout-title {
+    color: var(--color-note);
+}
+
+.admonition-note .admonition-title::before,
+.callout-note .callout-title::before {
+    content: "•";
+    font-size: 1.5rem;
+    line-height: 0;
+    color: var(--color-note);
+}
+
+/* --- Tip --- */
+.admonition-tip,
+.callout-tip {
+    border-left-color: var(--color-tip);
+    background-color: var(--bg-tip);
+}
+
+.admonition-tip .admonition-title,
+.callout-tip .callout-title {
+    color: var(--color-tip);
+}
+
+.admonition-tip .admonition-title::before,
+.callout-tip .callout-title::before {
+    content: "✦";
+    color: var(--color-tip);
+}
+
+/* --- Warning --- */
+.admonition-warning,
+.callout-warning {
+    border-left-color: var(--color-warning);
+    background-color: var(--bg-warning);
+}
+
+.admonition-warning .admonition-title,
+.callout-warning .callout-title {
+    color: var(--color-warning);
+}
+
+.admonition-warning .admonition-title::before,
+.callout-warning .callout-title::before {
+    content: "▲";
+    font-size: 0.75rem;
+    color: var(--color-warning);
+}
+
+/* --- Caution/Danger --- */
+.admonition-danger,
+.callout-danger,
+.admonition-caution,
+.callout-caution {
+    border-left-color: var(--color-danger);
+    background-color: var(--bg-danger);
+}
+
+.admonition-danger .admonition-title,
+.callout-danger .callout-title,
+.admonition-caution .admonition-title,
+.callout-caution .callout-title {
+    color: var(--color-danger);
+}
+
+.admonition-danger .admonition-title::before,
+.callout-danger .callout-title::before,
+.admonition-caution .admonition-title::before,
+.callout-caution .callout-title::before {
+    content: "■";
+    font-size: 0.75rem;
+    color: var(--color-danger);
+}
+
+/* --------------------------------------------------------------------------
+9. MEDIA ELEMENTS
+-------------------------------------------------------------------------- */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md);
+    margin: 2.5em 0;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img+em,
+img+figcaption {
+    display: block;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    margin-top: -1.8em;
+    margin-bottom: 2em;
+}
+
+/* --------------------------------------------------------------------------
+10. SYSTEM ELEMENTS (LATEX & FOOTNOTES)
+-------------------------------------------------------------------------- */
+.katex-display,
+.mathjax-display {
+    margin: 2.2em 0 !important;
+    padding: 1.3rem;
+    overflow-x: auto;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.footnotes {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+    font-size: 0.82em;
+    color: var(--text-tertiary);
+}
+
+.footnotes-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1em;
+    color: var(--text-primary);
+}
+
+pre.md-meta-block,
+.md-meta-block {
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: var(--border-radius-md) !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.82rem !important;
+    color: var(--text-secondary) !important;
+    padding: 1.2em !important;
+    margin-bottom: 3.2em !important;
+}
+
+pre.md-meta-block::before,
+.md-meta-block::before {
+    display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+11. KEYBOARD FOCUS (ACCESSIBILITY)
+-------------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-glow), 0 0 0 4px var(--accent-primary);
+    border-radius: var(--border-radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+12. RESPONSIVE (MOBILE-OPTIMIZED WHITESPACE)
+-------------------------------------------------------------------------- */
+@media (width <= 768px) {
+    body {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    #write,
+    .markdown-body {
+        padding: 2rem 1.2rem 4rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.15rem;
+    }
+
+    h4 {
+        font-size: 1.05rem;
+    }
+
+    table {
+        font-size: 0.88rem;
+    }
+
+    blockquote {
+        padding: 0.7em 1.2em;
+    }
+
+    pre {
+        padding: 1em 1.1em;
+    }
+}
