@@ -156,7 +156,8 @@ body {
 
 /* 最適な1行あたりの可読文字数を担保する最大幅 (760px) */
 #write,
-.markdown-body {
+.markdown-body,
+.markdown-theme {
   max-width: 760px;
   width: 100%;
   padding: 5rem 2.5rem 8rem;
@@ -795,7 +796,8 @@ select:focus-visible {
   }
 
   #write,
-  .markdown-body {
+  .markdown-body,
+  .markdown-theme {
     padding: 2rem 1.2rem 4rem;
   }
 
