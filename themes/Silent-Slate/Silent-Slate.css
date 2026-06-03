@@ -335,6 +335,72 @@ pre[class*="language-"] {
   box-shadow: var(--shadow-sm);
 }
 
+/* --- Copy Code Button --- */
+.code-block-wrapper {
+  position: relative;
+  margin: 2.2em 0;
+}
+
+.code-block-wrapper pre {
+  margin: 0 !important;
+}
+
+.copy-code-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 20;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  color: var(--text-tertiary);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.copy-code-button:hover {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.copy-code-button:focus-visible {
+  opacity: 1;
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--accent-glow),
+    0 0 0 4px var(--accent-primary);
+}
+
+.code-block-wrapper:hover .copy-code-button {
+  opacity: 1;
+}
+
+.copy-code-button.copied {
+  opacity: 1;
+  color: #fff;
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.copy-code-button.failed {
+  opacity: 1;
+  color: #fff;
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .copy-code-button {
+    opacity: 0.9;
+  }
+}
+
 /* --------------------------------------------------------------------------
 7. TABLES
 -------------------------------------------------------------------------- */
