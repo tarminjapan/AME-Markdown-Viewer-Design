@@ -255,13 +255,6 @@ h6 {
     letter-spacing: 0.08em;
 }
 
-h1:first-child,
-h2:first-child,
-h3:first-child,
-p:first-child {
-    margin-top: 0 !important;
-}
-
 p {
     margin-top: 0;
     margin-bottom: 1.5em;
@@ -363,6 +356,13 @@ blockquote p {
     font-style: italic;
 }
 
+h1:first-child,
+h2:first-child,
+h3:first-child,
+p:first-child {
+    margin-top: 0 !important;
+}
+
 blockquote cite {
     display: block;
     font-size: 0.82em;
@@ -399,6 +399,10 @@ ol {
     margin-bottom: 1.5em;
 }
 
+ul {
+    list-style-type: none;
+}
+
 li {
     margin-bottom: 0.45em;
     line-height: 1.8;
@@ -410,10 +414,6 @@ li>ol {
     margin-bottom: 0;
     border-left: 1px solid var(--border-light);
     padding-left: 1.1rem;
-}
-
-ul {
-    list-style-type: none;
 }
 
 ul li {
@@ -458,6 +458,7 @@ pre {
     border-radius: var(--border-radius-md);
     margin: 2.2em 0;
     padding: 1.35em 1.6em;
+    padding-top: 2.6rem !important;
     overflow-x: auto;
     position: relative;
     box-shadow: var(--shadow-sm);
@@ -483,10 +484,6 @@ pre::before {
     box-shadow: 10px 0 0 var(--text-muted), 20px 0 0 var(--text-muted);
     opacity: 0.35;
     z-index: 5;
-}
-
-pre {
-    padding-top: 2.6rem !important;
 }
 
 pre::-webkit-scrollbar {
