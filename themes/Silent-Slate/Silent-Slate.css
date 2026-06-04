@@ -15,7 +15,7 @@ DESIGN SYSTEM CONSTANTS (THE SLATE PALETTE)
   --text-primary: #0f172a;
   --text-secondary: #334155;
   --text-tertiary: #475569;
-  --text-muted: #64748b;
+  --text-muted: #5f6e7d;
   --accent-primary: #468bf7;
   --accent-hover: #2563eb;
   --accent-glow: rgb(70 139 247 / 8%);
@@ -325,6 +325,7 @@ input[type="checkbox"] {
 pre,
 pre[class*="language-"] {
   font-family: var(--font-mono) !important;
+  color: var(--text-primary);
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-light);
   border-radius: var(--border-radius-md);
