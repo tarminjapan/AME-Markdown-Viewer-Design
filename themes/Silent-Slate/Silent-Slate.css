@@ -69,7 +69,7 @@ body {
   color: var(--text-secondary);
   font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 1.85;
+  line-height: 1.7;
   letter-spacing: 0.015em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -279,7 +279,7 @@ ul {
 
 li {
   margin-bottom: 0.45em;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 li > ul,
@@ -527,7 +527,7 @@ select:focus-visible {
 @media (width <= 768px) {
   body {
     font-size: 15px;
-    line-height: 1.75;
+    line-height: 1.65;
   }
 
   #write,
